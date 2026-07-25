@@ -184,6 +184,17 @@ var SITE_CONTENT = null;
   function renderMusic() {
     var m = SITE_CONTENT.music;
 
+    var cover = byId("single-cover");
+    if (cover) {
+      if (filled(m.coverImage)) {
+        cover.src = m.coverImage;
+        cover.alt = filled(m.currentSingle) ? m.currentSingle + " cover art" : "Cover art";
+        cover.hidden = false;
+      } else {
+        cover.hidden = true;
+      }
+    }
+
     var title = byId("single-title");
     if (title) title.textContent = m.currentSingle;
 
@@ -315,14 +326,28 @@ var SITE_CONTENT = null;
     }
   }
 
-  function nudgeHeroVideo() {
-    var v = document.querySelector(".hero-video");
-    if (!v || typeof v.play !== "function") return;
-    try {
-      v.muted = true;
-      var p = v.play();
-      if (p && typeof p.catch === "function") p.catch(function () {});
-    } catch (e) { /* poster image stays up, which is fine */ }
+  /* Builds the muted/looping YouTube background embed for the home hero,
+     using the video ID set in content.json (home.heroYoutubeId). If that
+     field is blank, the poster image just stays put. */
+  function renderHeroVideo() {
+    var wrap = byId("hero-video");
+    if (!wrap) return;
+    var id = SITE_CONTENT.home.heroYoutubeId;
+    if (!filled(id)) return;
+
+    var src = "https://www.youtube-nocookie.com/embed/" + id +
+      "?autoplay=1&mute=1&loop=1&playlist=" + id +
+      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3";
+
+    var iframe = document.createElement("iframe");
+    iframe.className = "hero-video-frame";
+    iframe.src = src;
+    iframe.title = "Background video";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+    iframe.setAttribute("aria-hidden", "true");
+    iframe.setAttribute("tabindex", "-1");
+    wrap.appendChild(iframe);
   }
 
   function init() {
@@ -336,7 +361,7 @@ var SITE_CONTENT = null;
     if (page === "about") renderAbout();
 
     setupReveals();
-    nudgeHeroVideo();
+    renderHeroVideo();
   }
 
   function boot() {

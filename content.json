@@ -9,10 +9,10 @@
     { "label": "About", "href": "about.html" }
   ],
   "home": {
-    "heroVideo": "assets/hero-video.mp4",
+    "heroYoutubeId": "3v9jFnB9-m4",
     "heroPoster": "assets/hero-poster.jpg",
     "headline": "B Free",
-    "subhead": "[FILL IN: tagline or lyric snippet for the hero overlay]",
+    "subhead": "",
     "ctaPrimary": { "label": "Listen now", "href": "music.html" },
     "ctaSecondary": { "label": "Shop", "href": "store.html" }
   },
@@ -20,11 +20,12 @@
     "currentSingle": "Comfy Cozy",
     "singleBlurb": "[FILL IN: 1-2 sentences about the single/EP]",
     "musicVideo": "assets/comfy-cozy-video.mp4",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/38/1e/51381e21-0271-5b75-2bfd-0ac6caf4b456/459447.jpg/1200x1200bf-60.jpg",
     "streamingLinks": {
       "spotify": "https://open.spotify.com/artist/3m1RLmvTgk9XMbzjoulKaB",
-      "appleMusic": "[FILL IN: Apple Music link]",
+      "appleMusic": "https://music.apple.com/us/artist/b-free/1457894566",
       "youtube": "https://www.youtube.com/@bfree313",
-      "soundcloud": "[FILL IN: SoundCloud link, optional]"
+      "soundcloud": "https://soundcloud.com/officialbfree"
     }
   },
   "store": {

@@ -280,7 +280,32 @@ a.is-todo, span.is-todo { pointer-events: none; }
   inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+
+.hero-video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+/* The YouTube iframe is oversized and centered so it always covers the
+   hero area edge-to-edge (same trick as object-fit: cover, but iframes
+   don't support that property directly). */
+.hero-video-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16 / 9 */
+  min-height: 100vh;
+  min-width: 177.78vh; /* 16 / 9 */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border: 0;
 }
 
 .hero-overlay {
@@ -452,6 +477,16 @@ a.is-todo, span.is-todo { pointer-events: none; }
   object-fit: cover;
   background: var(--bg-elev);
   border: 1px solid var(--line);
+}
+
+.single-cover {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  margin-bottom: 1.6rem;
 }
 
 .single-title {
@@ -647,6 +682,72 @@ a.product-buy:hover { color: var(--accent); border-color: var(--accent); }
 
 .epk-row { margin-top: 1.6rem; }
 
+/* ---------- contact form (about) ---------- */
+
+.contact-block {
+  border: 1px solid var(--line);
+  padding: clamp(1.8rem, 5vw, 3.2rem);
+}
+
+.contact-title {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  margin: 0.8rem 0 1.6rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  max-width: 36rem;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.contact-field label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.contact-field input,
+.contact-field textarea {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.2s;
+}
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.contact-field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.contact-submit {
+  align-self: flex-start;
+  border: 0;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
 /* ---------- footer ---------- */
 
 .site-footer {
@@ -730,6 +831,7 @@ a.footer-email:hover { color: var(--accent); border-color: var(--accent); }
   .booking-block { grid-template-columns: 1fr; }
   .press-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
+  .contact-row { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 760px) {

@@ -28,21 +28,19 @@
 
       <!-- ============================================================
            HERO BACKGROUND VIDEO
-           Drop your video into the /assets folder and name it exactly:
+           Plays your latest YouTube video on loop, muted, behind the
+           hero text. The video ID lives in content.json under
+           home.heroYoutubeId — swap that value whenever you have a new
+           video and this section updates automatically, no code edits
+           needed. Unlisted videos work fine here.
 
-               hero-video.mp4
-
-           That's it. This tag will pick it up automatically.
-           Keep it short (10-30 seconds), no sound needed (it plays
-           muted), and export around 1080p to keep the page fast.
-
-           The poster attribute below is the still image shown while
-           the video loads. Replace assets/hero-poster.jpg with a
-           photo of your own using that same filename.
+           assets/hero-poster.jpg shows for a moment while the embed
+           loads (and stays as a fallback backdrop). Replace that file
+           with a still frame of your own using the same filename.
            ============================================================ -->
-      <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
-        <source src="assets/hero-video.mp4" type="video/mp4">
-      </video>
+      <div class="hero-video" id="hero-video">
+        <img class="hero-video-poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true">
+      </div>
 
       <div class="hero-overlay" aria-hidden="true"></div>
 
