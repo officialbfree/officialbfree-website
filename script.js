@@ -1,185 +1,14 @@
 /* ==========================================================================
-   B FREE — SITE CONTENT
-   ==========================================================================
-
-   THIS IS THE ONLY FILE YOU NEED TO EDIT.
-
-   Every word, link, and product on all four pages comes from the
-   SITE_CONTENT block below. Change something here, save the file,
-   refresh the browser, and every page updates.
-
-   Rules of thumb:
-   1. Only edit the text between "quotation marks".
-   2. Keep the quotes, colons, commas, and brackets exactly as they are.
-   3. Anything that says [FILL IN: ...] is waiting on you. Replace the
-      whole bracket, including the brackets themselves.
-   4. Until a link is filled in, the site shows it as a dimmed
-      "add link" placeholder. It switches on automatically once you
-      replace the bracket with a real link.
-
-   Media files (videos, photos, the EPK PDF) live in the /assets folder.
-   The list of exact filenames to drop in is in README.txt.
-
+   B FREE — SITE MACHINERY
+   Content now loads from content.json — edit that file (or use the
+   /admin dashboard) instead of this one.
    ========================================================================== */
 
-const SITE_CONTENT = {
-
-  // Artist name. Used in the nav, the hero, and the giant footer type.
-  artistName: "B Free",
-
-  // One-line description used for search engines and link previews.
-  // Suggestion if you want a starting point: "Define your own freedom."
-  tagline: "[FILL IN: a one-line hook, e.g. 'Detroit-bred hip-hop & R&B.']",
-
-  // Shown as the small line above your name in the hero.
-  location: "Detroit, MI",
-
-  /* ---- NAVIGATION -------------------------------------------------------
-     The menu at the top of every page. Order here = order on screen.
-     "label" is what people see, "href" is the page it opens.            */
-  nav: [
-    { label: "Home",  href: "index.html" },
-    { label: "Music", href: "music.html" },
-    { label: "Store", href: "store.html" },
-    { label: "About", href: "about.html" }
-  ],
-
-  /* ---- HOME PAGE --------------------------------------------------------- */
-  home: {
-    // Background video for the hero. Drop your file into /assets with this
-    // exact name (or change the name here to match your file).
-    heroVideo: "assets/hero-video.mp4",
-
-    // Still image shown while the video loads, and on phones with
-    // low-power mode. Drop your image into /assets with this name.
-    heroPoster: "assets/hero-poster.jpg",
-
-    // The giant name in the hero. The LAST word automatically renders in
-    // outline style (that's the site's signature look).
-    headline: "B Free",
-
-    // One line under the name. A lyric, a hook, a mission statement.
-    subhead: "[FILL IN: tagline or lyric snippet for the hero overlay]",
-
-    // The two buttons in the hero.
-    ctaPrimary:   { label: "Listen now", href: "music.html" },
-    ctaSecondary: { label: "Shop",       href: "store.html" }
-  },
-
-  /* ---- MUSIC PAGE -------------------------------------------------------- */
-  music: {
-    // The release being pushed right now. Also feeds the scrolling
-    // "out now" strip on the home page.
-    currentSingle: "Comfy Cozy",
-
-    // One or two sentences about the release.
-    singleBlurb: "[FILL IN: 1-2 sentences about the single/EP]",
-
-    // The music video. Drop your file into /assets with this exact name
-    // (or change the name here to match your file).
-    musicVideo: "assets/comfy-cozy-video.mp4",
-
-    // Where the streaming buttons point. Filled links become live buttons,
-    // unfilled ones show as dimmed placeholders until you add them.
-    streamingLinks: {
-      spotify:    "https://open.spotify.com/artist/3m1RLmvTgk9XMbzjoulKaB",
-      appleMusic: "[FILL IN: Apple Music link]",
-      youtube:    "https://www.youtube.com/@bfree313",
-      soundcloud: "[FILL IN: SoundCloud link, optional]"
-    }
-  },
-
-  /* ---- STORE PAGE ---------------------------------------------------------
-     Each { ... } block inside "products" is one card in the grid.
-     To add a product: copy a whole block, including its curly braces
-     and the comma after it, and paste it below the last one.
-     To remove a product: delete its whole block.
-
-     "buyLink" is where the Buy button sends people. Paste a checkout link
-     from Shopify, Gumroad, Fourthwall, or a Stripe Payment Link. Until
-     it's filled in, the button shows as a dimmed placeholder.            */
-  store: {
-    products: [
-      {
-        name: "[FILL IN: Product name]",
-        price: "[FILL IN: $0]",
-        image: "assets/product-1.jpg",
-        buyLink: "[FILL IN: checkout link — Shopify/Gumroad/Fourthwall/Stripe]"
-      },
-      {
-        name: "[FILL IN: Product name]",
-        price: "[FILL IN: $0]",
-        image: "assets/product-2.jpg",
-        buyLink: "[FILL IN: checkout link]"
-      },
-      {
-        name: "[FILL IN: Product name]",
-        price: "[FILL IN: $0]",
-        image: "assets/product-3.jpg",
-        buyLink: "[FILL IN: checkout link]"
-      }
-    ]
-  },
-
-  /* ---- ABOUT PAGE (doubles as your EPK) ----------------------------------- */
-  about: {
-    // Your bio. Line breaks are fine, just keep it inside the quotes.
-    bio: "B Free is a Detroit-based hip-hop and R&B artist, songwriter, performer, entrepreneur, and marketing strategist. He has toured nationally and internationally, collaborated with established and emerging artists, and partnered with recognizable brands.",
-
-    // Career highlights, one per line. Add or remove lines freely;
-    // keep each one wrapped in quotes with a comma after it.
-    highlights: [
-      "Talent & Brand Associate — Detroit Pistons",
-      "Regional Content Developer — Puma",
-      "Managed the Hugo Boss department at Saks Fifth Avenue",
-      "National and international touring experience",
-      "Independent release strategy — self-managed digital marketing campaigns"
-    ],
-
-    // The downloadable press kit. Drop your PDF into /assets with this name.
-    epkDownload: "assets/b-free-epk.pdf",
-
-    // Booking / press contact block.
-    booking: {
-      email: "[FILL IN: booking/contact email]",
-      instagram: "@bfree",
-      tiktok: "@notbfree",
-      youtube: "https://www.youtube.com/@bfree313"
-    },
-
-    // Press photos shown on the About page. Drop your images into /assets
-    // with these names, or add more lines for more photos.
-    pressPhotos: [
-      "assets/press-1.jpg",
-      "assets/press-2.jpg",
-      "assets/press-3.jpg"
-    ]
-  },
-
-  /* ---- FOOTER (appears on every page) ------------------------------------- */
-  footer: {
-    email: "[FILL IN: general contact email]",
-    socials: {
-      instagram: "https://www.instagram.com/bfree",
-      tiktok: "https://www.tiktok.com/@notbfree",
-      youtube: "https://www.youtube.com/@bfree313"
-    },
-    copyright: "© 2026 B Free. All rights reserved."
-  }
-};
-
-/* ==========================================================================
-   EVERYTHING BELOW THIS LINE IS SITE MACHINERY.
-   You never need to edit it. It reads SITE_CONTENT and builds the
-   nav, footer, and page content on every page.
-   ========================================================================== */
+var SITE_CONTENT = null;
 
 (function () {
   "use strict";
 
-  /* ---------- small helpers ---------- */
-
-  // A value counts as "filled in" once the [FILL IN ...] bracket is gone.
   function filled(v) {
     return typeof v === "string" && v.trim() !== "" && v.toUpperCase().indexOf("[FILL IN") === -1;
   }
@@ -188,7 +17,6 @@ const SITE_CONTENT = {
     return document.getElementById(id);
   }
 
-  // Ensures links to other websites open in a new tab.
   function isExternal(href) {
     return /^https?:\/\//i.test(href) || /^mailto:/i.test(href);
   }
@@ -197,13 +25,10 @@ const SITE_CONTENT = {
     return isExternal(href) ? ' target="_blank" rel="noopener"' : "";
   }
 
-  // Which page file is currently open (works locally and on a host).
   function currentPage() {
     var p = window.location.pathname.split("/").pop();
     return p && p.indexOf(".html") !== -1 ? p : "index.html";
   }
-
-  /* ---------- shared nav ---------- */
 
   var SOCIAL_SHORT = { instagram: "IG", tiktok: "TT", youtube: "YT" };
   var SOCIAL_FULL  = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube" };
@@ -246,7 +71,6 @@ const SITE_CONTENT = {
         "</button>" +
       "</div>";
 
-    // Full-screen menu used on phones.
     var menu = document.createElement("div");
     menu.className = "mobile-menu";
     menu.id = "mobile-menu";
@@ -273,7 +97,6 @@ const SITE_CONTENT = {
       }
     });
 
-    // Solid header on interior pages; transparent over the home hero.
     if (document.body.getAttribute("data-page") !== "home") {
       header.classList.add("solid");
     }
@@ -283,8 +106,6 @@ const SITE_CONTENT = {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
-
-  /* ---------- shared footer ---------- */
 
   function renderFooter() {
     var footer = byId("site-footer");
@@ -311,10 +132,6 @@ const SITE_CONTENT = {
       "</div>";
   }
 
-  /* ---------- home page ---------- */
-
-  // The last word of the headline renders in outline style. If the
-  // headline is one word, the whole word renders in outline.
   function styledHeadline(text) {
     var words = text.trim().split(/\s+/);
     if (words.length === 1) {
@@ -346,8 +163,6 @@ const SITE_CONTENT = {
         '<a class="btn btn-ghost" href="' + h.ctaSecondary.href + '">' + h.ctaSecondary.label + "</a>";
     }
 
-    // Scrolling "out now" strip. Built from the current single on the
-    // Music page settings, so it always stays in sync.
     var marquee = byId("marquee-track");
     if (marquee && filled(SITE_CONTENT.music.currentSingle)) {
       var phrase = '<span class="marquee-item">' + SITE_CONTENT.music.currentSingle +
@@ -358,8 +173,6 @@ const SITE_CONTENT = {
       marquee.innerHTML = group + '<div class="marquee-group" aria-hidden="true">' + phrase + phrase + phrase + "</div>";
     }
   }
-
-  /* ---------- music page ---------- */
 
   var PLATFORM_LABELS = {
     spotify: "Spotify",
@@ -393,14 +206,12 @@ const SITE_CONTENT = {
         } else {
           rows += '<li><span class="stream-link is-todo">' +
                   '<span>' + PLATFORM_LABELS[key] + "</span>" +
-                  '<span class="stream-note">add link in script.js</span></span></li>';
+                  '<span class="stream-note">add link in content.json</span></span></li>';
         }
       }
       list.innerHTML = rows;
     }
   }
-
-  /* ---------- store page ---------- */
 
   function renderStore() {
     var grid = byId("product-grid");
@@ -431,8 +242,6 @@ const SITE_CONTENT = {
     }
     grid.innerHTML = cards;
   }
-
-  /* ---------- about page ---------- */
 
   function renderAbout() {
     var a = SITE_CONTENT.about;
@@ -485,8 +294,6 @@ const SITE_CONTENT = {
     }
   }
 
-  /* ---------- shared page effects ---------- */
-
   function setupReveals() {
     var nodes = document.querySelectorAll(".reveal");
     if (!("IntersectionObserver" in window)) {
@@ -508,8 +315,6 @@ const SITE_CONTENT = {
     }
   }
 
-  // Some browsers block autoplay until the video is explicitly muted
-  // from script. This nudges the hero video to start.
   function nudgeHeroVideo() {
     var v = document.querySelector(".hero-video");
     if (!v || typeof v.play !== "function") return;
@@ -519,8 +324,6 @@ const SITE_CONTENT = {
       if (p && typeof p.catch === "function") p.catch(function () {});
     } catch (e) { /* poster image stays up, which is fine */ }
   }
-
-  /* ---------- boot ---------- */
 
   function init() {
     renderNav();
@@ -536,9 +339,21 @@ const SITE_CONTENT = {
     nudgeHeroVideo();
   }
 
+  function boot() {
+    fetch("content.json")
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        SITE_CONTENT = data;
+        init();
+      })
+      .catch(function (e) {
+        console.error("Could not load content.json", e);
+      });
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    init();
+    boot();
   }
 })();
