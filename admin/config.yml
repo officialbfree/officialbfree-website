@@ -1,0 +1,119 @@
+backend:
+  name: git-gateway
+  repo: officialbfree/officialbfree-website
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/0023da3a-f70e-49c7-88e0-6463060db85a
+  gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+site_url: https://officialbfree.netlify.app
+
+media_folder: "assets"
+public_folder: "assets"
+
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - file: "content.json"
+        label: "Site Content"
+        name: "content"
+        fields:
+          - { label: "Artist Name", name: "artistName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - label: "Navigation"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Link", name: "href", widget: "string" }
+          - label: "Home Page"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "Hero Video", name: "heroVideo", widget: "file" }
+              - { label: "Hero Poster Image", name: "heroPoster", widget: "image" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Hero Subhead", name: "subhead", widget: "string" }
+              - label: "Primary Button"
+                name: "ctaPrimary"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link", name: "href", widget: "string" }
+              - label: "Secondary Button"
+                name: "ctaSecondary"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link", name: "href", widget: "string" }
+          - label: "Music Page"
+            name: "music"
+            widget: "object"
+            fields:
+              - { label: "Current Single Name", name: "currentSingle", widget: "string" }
+              - { label: "Single Blurb", name: "singleBlurb", widget: "text" }
+              - { label: "Music Video", name: "musicVideo", widget: "file" }
+              - label: "Streaming Links"
+                name: "streamingLinks"
+                widget: "object"
+                fields:
+                  - { label: "Spotify", name: "spotify", widget: "string", required: false }
+                  - { label: "Apple Music", name: "appleMusic", widget: "string", required: false }
+                  - { label: "YouTube", name: "youtube", widget: "string", required: false }
+                  - { label: "SoundCloud", name: "soundcloud", widget: "string", required: false }
+          - label: "Store"
+            name: "store"
+            widget: "object"
+            fields:
+              - label: "Products"
+                name: "products"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Price", name: "price", widget: "string" }
+                  - { label: "Photo", name: "image", widget: "image" }
+                  - { label: "Buy Link", name: "buyLink", widget: "string" }
+          - label: "About Page"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Bio", name: "bio", widget: "text" }
+              - label: "Highlights"
+                name: "highlights"
+                widget: "list"
+                field: { label: "Highlight", name: "highlight", widget: "string" }
+              - { label: "EPK PDF", name: "epkDownload", widget: "file" }
+              - label: "Booking Info"
+                name: "booking"
+                widget: "object"
+                fields:
+                  - { label: "Booking Email", name: "email", widget: "string" }
+                  - { label: "Instagram Handle", name: "instagram", widget: "string" }
+                  - { label: "TikTok Handle", name: "tiktok", widget: "string" }
+                  - { label: "YouTube Link", name: "youtube", widget: "string" }
+              - label: "Press Photos"
+                name: "pressPhotos"
+                widget: "list"
+                field: { label: "Photo", name: "photo", widget: "image" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Contact Email", name: "email", widget: "string" }
+              - label: "Social Links"
+                name: "socials"
+                widget: "object"
+                fields:
+                  - { label: "Instagram", name: "instagram", widget: "string" }
+                  - { label: "TikTok", name: "tiktok", widget: "string" }
+                  - { label: "YouTube", name: "youtube", widget: "string" }
+              - { label: "Copyright Text", name: "copyright", widget: "string" }
