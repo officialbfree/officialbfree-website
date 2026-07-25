@@ -853,7 +853,7 @@ a.product-buy:hover { color: var(--accent); border-color: var(--accent); }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: clamp(2rem, 5vw, 3.5rem);
 }

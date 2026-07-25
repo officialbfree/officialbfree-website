@@ -133,17 +133,11 @@ var SITE_CONTENT = null;
     if (!footer) return;
 
     var f = SITE_CONTENT.footer;
-    var emailHtml = filled(f.email)
-      ? '<a class="footer-email" href="mailto:' + f.email + '">' + f.email + "</a>"
-      : '<span class="footer-email is-todo">' + f.email + "</span>";
 
     footer.innerHTML =
       '<div class="footer-inner">' +
         '<p class="footer-ghost" aria-hidden="true">' + SITE_CONTENT.artistName + "</p>" +
         '<div class="footer-grid">' +
-          '<div class="footer-col">' +
-            '<p class="eyebrow">Contact</p>' + emailHtml +
-          "</div>" +
           '<div class="footer-col">' +
             '<p class="eyebrow">Follow</p>' +
             '<div class="footer-socials">' + socialLinks(SOCIAL_FULL, "footer-social") + "</div>" +
