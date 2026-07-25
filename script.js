@@ -137,12 +137,6 @@ var SITE_CONTENT = null;
     footer.innerHTML =
       '<div class="footer-inner">' +
         '<p class="footer-ghost" aria-hidden="true">' + SITE_CONTENT.artistName + "</p>" +
-        '<div class="footer-grid">' +
-          '<div class="footer-col">' +
-            '<p class="eyebrow">Follow</p>' +
-            '<div class="footer-socials">' + socialLinks(SOCIAL_FULL, "footer-social") + "</div>" +
-          "</div>" +
-        "</div>" +
         '<p class="footer-copy">' + f.copyright + "</p>" +
       "</div>";
   }
