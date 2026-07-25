@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Page title shown in the browser tab. Safe to edit. -->
+  <title>B Free — Official Site</title>
+  <meta name="description" content="Official site of B Free. Detroit hip-hop and R&B. Music, merch, booking.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Nav is built automatically from SITE_CONTENT.nav in script.js -->
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+    <section class="hero">
+
+      <!-- ============================================================
+           HERO BACKGROUND VIDEO
+           Drop your video into the /assets folder and name it exactly:
+
+               hero-video.mp4
+
+           That's it. This tag will pick it up automatically.
+           Keep it short (10-30 seconds), no sound needed (it plays
+           muted), and export around 1080p to keep the page fast.
+
+           The poster attribute below is the still image shown while
+           the video loads. Replace assets/hero-poster.jpg with a
+           photo of your own using that same filename.
+           ============================================================ -->
+      <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+        <source src="assets/hero-video.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow hero-eyebrow" id="hero-eyebrow"></p>
+        <h1 class="display hero-title" id="hero-headline"></h1>
+        <p class="hero-subhead" id="hero-subhead"></p>
+        <div class="hero-ctas" id="hero-ctas"></div>
+      </div>
+    </section>
+
+    <!-- Scrolling "out now" strip. Text comes from the current single
+         set in SITE_CONTENT.music in script.js. -->
+    <a class="marquee" href="music.html" aria-label="Latest release, listen now">
+      <div class="marquee-track" id="marquee-track"></div>
+    </a>
+
+    <!-- Big links into the rest of the site -->
+    <section class="explore">
+      <a class="explore-panel reveal" href="music.html">
+        <span class="display explore-label">Music</span>
+        <span class="explore-hint">Latest release &#8599;</span>
+      </a>
+      <a class="explore-panel reveal" href="store.html">
+        <span class="display explore-label">Store</span>
+        <span class="explore-hint">Official merch &#8599;</span>
+      </a>
+      <a class="explore-panel reveal" href="about.html">
+        <span class="display explore-label">About</span>
+        <span class="explore-hint">Bio &amp; booking &#8599;</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer is built automatically from SITE_CONTENT.footer in script.js -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

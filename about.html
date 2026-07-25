@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Page title shown in the browser tab. Safe to edit. -->
+  <title>About — B Free</title>
+  <meta name="description" content="About B Free. Bio, career highlights, press photos, and booking contact.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Nav is built automatically from SITE_CONTENT.nav in script.js -->
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main" class="page">
+
+    <header class="page-head reveal">
+      <p class="eyebrow">Bio &amp; press kit</p>
+      <h1 class="display page-title">About</h1>
+    </header>
+
+    <!-- Bio text comes from SITE_CONTENT.about.bio in script.js -->
+    <section class="about-bio reveal">
+      <p id="about-bio"></p>
+    </section>
+
+    <!-- Career highlights come from SITE_CONTENT.about.highlights -->
+    <section class="about-section reveal">
+      <p class="eyebrow">Highlights</p>
+      <ul class="highlight-list" id="highlights"></ul>
+    </section>
+
+    <!-- ================================================================
+         PRESS PHOTOS
+         Drop your photos into /assets named press-1.jpg, press-2.jpg,
+         press-3.jpg. Portrait orientation looks best here. To show more
+         than three, add lines to SITE_CONTENT.about.pressPhotos.
+         ================================================================ -->
+    <section class="about-section">
+      <p class="eyebrow">Press photos</p>
+      <div class="press-grid" id="press-grid"></div>
+    </section>
+
+    <!-- Booking contact and EPK download.
+         Email and handles come from SITE_CONTENT.about.booking.
+         The EPK button points at assets/b-free-epk.pdf. Drop your PDF
+         into /assets with that exact name and the button just works. -->
+    <section class="about-section reveal">
+      <div class="booking-block">
+        <div>
+          <p class="eyebrow">Booking &amp; press</p>
+          <h2 class="display booking-title">Work with B Free</h2>
+          <div id="booking-email"></div>
+          <p class="epk-row">
+            <a class="btn btn-ghost" id="epk-button" href="assets/b-free-epk.pdf" download>Download EPK (PDF)</a>
+          </p>
+        </div>
+        <div>
+          <ul class="handle-list" id="booking-handles"></ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer is built automatically from SITE_CONTENT.footer in script.js -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
