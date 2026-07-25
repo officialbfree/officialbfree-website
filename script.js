@@ -30,8 +30,17 @@ var SITE_CONTENT = null;
     return p && p.indexOf(".html") !== -1 ? p : "index.html";
   }
 
-  var SOCIAL_SHORT = { instagram: "IG", tiktok: "TT", youtube: "YT" };
   var SOCIAL_FULL  = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube" };
+
+  /* Simple line-icon glyphs (not the brand's official logo files) used in
+     the compact nav bar so IG/TikTok/YouTube read as icons instead of
+     letters. Each is a link straight to the matching URL in
+     SITE_CONTENT.footer.socials. */
+  var SOCIAL_ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3h-3.2v12.4a3 3 0 1 1-2.1-2.86V9.32a6.2 6.2 0 1 0 5.3 6.14V9.9a7.6 7.6 0 0 0 4.2 1.27V8.06A4.4 4.4 0 0 1 16.6 3Z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10.4 9.4v5.2l4.6-2.6-4.6-2.6Z"/></svg>'
+  };
 
   function socialLinks(labels, cls) {
     var out = "";
@@ -40,6 +49,18 @@ var SITE_CONTENT = null;
       if (filled(socials[key])) {
         out += '<a class="' + cls + '" href="' + socials[key] + '"' + linkAttrs(socials[key]) + ">" +
                labels[key] + "</a>";
+      }
+    }
+    return out;
+  }
+
+  function socialIconLinks(cls) {
+    var out = "";
+    var socials = SITE_CONTENT.footer.socials;
+    for (var key in socials) {
+      if (filled(socials[key]) && SOCIAL_ICONS[key]) {
+        out += '<a class="' + cls + '" href="' + socials[key] + '"' + linkAttrs(socials[key]) +
+               ' aria-label="' + SOCIAL_FULL[key] + '">' + SOCIAL_ICONS[key] + "</a>";
       }
     }
     return out;
@@ -64,7 +85,7 @@ var SITE_CONTENT = null;
         '<nav class="nav-links" aria-label="Primary">' +
           links +
           '<span class="nav-sep" aria-hidden="true"></span>' +
-          socialLinks(SOCIAL_SHORT, "nav-social") +
+          socialIconLinks("nav-social") +
         "</nav>" +
         '<button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">' +
           "<span></span><span></span>" +
@@ -222,6 +243,22 @@ var SITE_CONTENT = null;
       }
       list.innerHTML = rows;
     }
+
+    var discoGrid = byId("discography-grid");
+    if (discoGrid) {
+      var releases = m.previousReleases || [];
+      var cards = "";
+      for (var i = 0; i < releases.length; i++) {
+        var r = releases[i];
+        cards += '<a class="discography-item reveal" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
+          '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
+          ' cover art" loading="lazy"></div>' +
+          '<p class="discography-name">' + r.title + "</p>" +
+          '<p class="discography-meta">' + r.type + " &bull; " + r.year + "</p>" +
+        "</a>";
+      }
+      discoGrid.innerHTML = cards;
+    }
   }
 
   function renderStore() {
@@ -328,19 +365,27 @@ var SITE_CONTENT = null;
 
   /* Builds the muted/looping YouTube background embed for the home hero,
      using the video ID set in content.json (home.heroYoutubeId). If that
-     field is blank, the poster image just stays put. */
+     field is blank, the poster image just stays put.
+
+     Browsers only allow autoplay when video starts muted, so it always
+     loads silent. enablejsapi=1 lets the #hero-sound-toggle button send
+     mute/unMute commands to the player via postMessage so a visitor can
+     turn the sound on with one click. */
   function renderHeroVideo() {
     var wrap = byId("hero-video");
     if (!wrap) return;
     var id = SITE_CONTENT.home.heroYoutubeId;
     if (!filled(id)) return;
 
+    var origin = window.location.origin;
     var src = "https://www.youtube-nocookie.com/embed/" + id +
       "?autoplay=1&mute=1&loop=1&playlist=" + id +
-      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3";
+      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
+      "&enablejsapi=1&origin=" + encodeURIComponent(origin);
 
     var iframe = document.createElement("iframe");
     iframe.className = "hero-video-frame";
+    iframe.id = "hero-video-frame";
     iframe.src = src;
     iframe.title = "Background video";
     iframe.setAttribute("frameborder", "0");
@@ -348,6 +393,25 @@ var SITE_CONTENT = null;
     iframe.setAttribute("aria-hidden", "true");
     iframe.setAttribute("tabindex", "-1");
     wrap.appendChild(iframe);
+
+    var toggle = byId("hero-sound-toggle");
+    var icon = byId("hero-sound-icon") || (toggle && toggle.querySelector(".hero-sound-icon"));
+    if (!toggle) return;
+
+    var muted = true;
+    var sendCommand = function (func) {
+      if (!iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: [] }), "*");
+    };
+
+    toggle.addEventListener("click", function () {
+      muted = !muted;
+      sendCommand(muted ? "mute" : "unMute");
+      toggle.classList.toggle("is-unmuted", !muted);
+      toggle.setAttribute("aria-pressed", String(!muted));
+      toggle.setAttribute("aria-label", muted ? "Unmute background video" : "Mute background video");
+      if (icon) icon.innerHTML = muted ? "&#128263;" : "&#128266;";
+    });
   }
 
   function init() {

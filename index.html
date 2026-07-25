@@ -44,6 +44,13 @@
 
       <div class="hero-overlay" aria-hidden="true"></div>
 
+      <!-- Browsers block autoplay-with-sound, so the video starts muted
+           and this button lets visitors turn the music on with one
+           click. Wired up in script.js (renderHeroVideo). -->
+      <button type="button" class="hero-sound-toggle" id="hero-sound-toggle" aria-pressed="false" aria-label="Unmute background video">
+        <span class="hero-sound-icon" aria-hidden="true">&#128263;</span>
+      </button>
+
       <div class="hero-content">
         <p class="eyebrow hero-eyebrow" id="hero-eyebrow"></p>
         <h1 class="display hero-title" id="hero-headline"></h1>

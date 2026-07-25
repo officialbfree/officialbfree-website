@@ -72,6 +72,20 @@
     </section>
 
     <!-- ================================================================
+         DISCOGRAPHY
+         Everything except the current single, newest first, built from
+         SITE_CONTENT.music.previousReleases in content.json. When you
+         put out something new: move the old "latest release" into an
+         object at the top of that array (title, year, type, image, url)
+         and update currentSingle/coverImage with the new one.
+         ================================================================ -->
+    <section class="discography reveal">
+      <p class="eyebrow">Discography</p>
+      <h2 class="display discography-title">More releases</h2>
+      <div class="discography-grid" id="discography-grid"></div>
+    </section>
+
+    <!-- ================================================================
          STREAMING PLAYER EMBED
          To put a real Spotify player here:
            1. Open your track or album on open.spotify.com
