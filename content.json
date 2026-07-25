@@ -1,0 +1,64 @@
+{
+  "artistName": "B Free",
+  "tagline": "[FILL IN: a one-line hook, e.g. 'Detroit-bred hip-hop & R&B.']",
+  "location": "Detroit, MI",
+  "nav": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "Music", "href": "music.html" },
+    { "label": "Store", "href": "store.html" },
+    { "label": "About", "href": "about.html" }
+  ],
+  "home": {
+    "heroVideo": "assets/hero-video.mp4",
+    "heroPoster": "assets/hero-poster.jpg",
+    "headline": "B Free",
+    "subhead": "[FILL IN: tagline or lyric snippet for the hero overlay]",
+    "ctaPrimary": { "label": "Listen now", "href": "music.html" },
+    "ctaSecondary": { "label": "Shop", "href": "store.html" }
+  },
+  "music": {
+    "currentSingle": "Comfy Cozy",
+    "singleBlurb": "[FILL IN: 1-2 sentences about the single/EP]",
+    "musicVideo": "assets/comfy-cozy-video.mp4",
+    "streamingLinks": {
+      "spotify": "https://open.spotify.com/artist/3m1RLmvTgk9XMbzjoulKaB",
+      "appleMusic": "[FILL IN: Apple Music link]",
+      "youtube": "https://www.youtube.com/@bfree313",
+      "soundcloud": "[FILL IN: SoundCloud link, optional]"
+    }
+  },
+  "store": {
+    "products": [
+      { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "image": "assets/product-1.jpg", "buyLink": "[FILL IN: checkout link]" },
+      { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "image": "assets/product-2.jpg", "buyLink": "[FILL IN: checkout link]" },
+      { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "image": "assets/product-3.jpg", "buyLink": "[FILL IN: checkout link]" }
+    ]
+  },
+  "about": {
+    "bio": "B Free is a Detroit-based hip-hop and R&B artist, songwriter, performer, entrepreneur, and marketing strategist. He has toured nationally and internationally, collaborated with established and emerging artists, and partnered with recognizable brands.",
+    "highlights": [
+      "Talent & Brand Associate — Detroit Pistons",
+      "Regional Content Developer — Puma",
+      "Managed the Hugo Boss department at Saks Fifth Avenue",
+      "National and international touring experience",
+      "Independent release strategy — self-managed digital marketing campaigns"
+    ],
+    "epkDownload": "assets/b-free-epk.pdf",
+    "booking": {
+      "email": "[FILL IN: booking/contact email]",
+      "instagram": "@bfree",
+      "tiktok": "@notbfree",
+      "youtube": "https://www.youtube.com/@bfree313"
+    },
+    "pressPhotos": ["assets/press-1.jpg", "assets/press-2.jpg", "assets/press-3.jpg"]
+  },
+  "footer": {
+    "email": "[FILL IN: general contact email]",
+    "socials": {
+      "instagram": "https://www.instagram.com/bfree",
+      "tiktok": "https://www.tiktok.com/@notbfree",
+      "youtube": "https://www.youtube.com/@bfree313"
+    },
+    "copyright": "© 2026 B Free. All rights reserved."
+  }
+}
