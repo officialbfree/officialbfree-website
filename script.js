@@ -285,15 +285,6 @@ var SITE_CONTENT = null;
     var bio = byId("about-bio");
     if (bio) bio.textContent = a.bio;
 
-    var list = byId("highlights");
-    if (list) {
-      var items = "";
-      for (var i = 0; i < a.highlights.length; i++) {
-        items += "<li>" + a.highlights[i] + "</li>";
-      }
-      list.innerHTML = items;
-    }
-
     var press = byId("press-grid");
     if (press) {
       var photos = "";
