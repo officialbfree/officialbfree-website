@@ -19,8 +19,8 @@
   },
   "music": {
     "currentSingle": "Comfy Cozy",
-    "singleBlurb": "[FILL IN: 1-2 sentences about the single/EP]",
-    "musicVideo": "assets/comfy-cozy-video.mp4",
+    "singleBlurb": "The newest single from B Free and Prod. By Bert — laid-back, late-summer energy, with a video shot by AGBFOH.",
+    "musicVideoYoutubeId": "3v9jFnB9-m4",
     "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/38/1e/51381e21-0271-5b75-2bfd-0ac6caf4b456/459447.jpg/1200x1200bf-60.jpg",
     "streamingLinks": {
       "spotify": "https://open.spotify.com/artist/3m1RLmvTgk9XMbzjoulKaB",
