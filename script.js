@@ -402,6 +402,13 @@ var SITE_CONTENT = null;
     if (page === "store") renderStore();
     if (page === "about") renderAbout();
 
+    /* Locks the home page to a single, non-scrolling screen: video +
+       name + carousel, nothing to scroll to. See the matching CSS
+       rule for html.no-scroll in style.css. */
+    if (page === "home") {
+      document.documentElement.classList.add("no-scroll");
+    }
+
     setupReveals();
     renderHeroVideo();
   }
