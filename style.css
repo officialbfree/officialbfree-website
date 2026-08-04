@@ -38,6 +38,15 @@ body {
   overflow-x: hidden;
 }
 
+/* Locks the whole page from scrolling. Only ever applied on the home
+   page (script.js adds this class to <html> there) so the one-pager
+   hero + carousel fits the screen exactly with nothing to scroll. */
+html.no-scroll,
+html.no-scroll body {
+  height: 100%;
+  overflow: hidden;
+}
+
 img, video { display: block; max-width: 100%; }
 
 img { background: var(--bg-elev); }
@@ -278,6 +287,32 @@ a.is-todo, span.is-todo { pointer-events: none; }
   overflow: hidden;
 }
 
+/* One-pager lock: on the home page the hero shares the screen with the
+   carousel strip below it instead of taking the full viewport height,
+   and the footer is hidden entirely so there's nothing to scroll to. */
+body[data-page="home"] {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+}
+body[data-page="home"] #main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+body[data-page="home"] .hero {
+  flex: 1;
+  min-height: 0;
+}
+body[data-page="home"] .marquee {
+  flex-shrink: 0;
+}
+body[data-page="home"] .site-footer {
+  display: none;
+}
+
 .hero-video {
   position: absolute;
   inset: 0;
@@ -319,6 +354,22 @@ a.is-todo, span.is-todo { pointer-events: none; }
     linear-gradient(180deg, rgba(18, 16, 13, 0.55) 0%, rgba(18, 16, 13, 0.18) 42%, rgba(18, 16, 13, 0.94) 100%);
 }
 
+/* Solid strip along the very bottom of the hero video. This video has
+   no toggleable YouTube caption track — any on-screen text is burned
+   into the video file itself, so the only reliable way to hide it is
+   to cover that strip. Sits below the headline (which is anchored
+   higher up via align-items: flex-end + its own bottom padding). */
+.hero-caption-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(90px, 16vh, 190px);
+  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 55%, rgba(18, 16, 13, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-content {
   position: relative;
   width: var(--container);
@@ -352,9 +403,9 @@ a.is-todo, span.is-todo { pointer-events: none; }
   transform: translateY(26px);
   animation: rise 0.9s var(--ease) forwards;
 }
-.hero-title   { animation-delay: 0.12s; }
+.hero-title { animation-delay: 0.12s; }
 .hero-subhead { animation-delay: 0.26s; }
-.hero-ctas    { animation-delay: 0.4s; }
+.hero-ctas { animation-delay: 0.4s; }
 
 @keyframes rise {
   to { opacity: 1; transform: none; }
