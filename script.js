@@ -136,7 +136,6 @@ var SITE_CONTENT = null;
 
     footer.innerHTML =
       '<div class="footer-inner">' +
-        '<p class="footer-ghost" aria-hidden="true">' + SITE_CONTENT.artistName + "</p>" +
         '<p class="footer-copy">' + f.copyright + "</p>" +
       "</div>";
   }
@@ -239,11 +238,11 @@ var SITE_CONTENT = null;
       for (var i = 0; i < releases.length; i++) {
         var r = releases[i];
         cards += '<a class="discography-item reveal" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
-          '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
-          ' cover art" loading="lazy"></div>' +
-          '<p class="discography-name">' + r.title + "</p>" +
-          '<p class="discography-meta">' + r.type + " &bull; " + r.year + "</p>" +
-        "</a>";
+                 '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
+                 ' cover art" loading="lazy"></div>' +
+                 '<p class="discography-name">' + r.title + "</p>" +
+                 '<p class="discography-meta">' + r.type + " &bull; " + r.year + "</p>" +
+                 "</a>";
       }
       discoGrid.innerHTML = cards;
     }
@@ -252,7 +251,6 @@ var SITE_CONTENT = null;
   function renderStore() {
     var grid = byId("product-grid");
     if (!grid) return;
-
     var products = SITE_CONTENT.store.products;
     var cards = "";
     for (var i = 0; i < products.length; i++) {
@@ -358,9 +356,10 @@ var SITE_CONTENT = null;
 
     var origin = window.location.origin;
     var src = "https://www.youtube-nocookie.com/embed/" + id +
-      "?autoplay=1&mute=1&loop=1&playlist=" + id +
-      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
-      "&enablejsapi=1&origin=" + encodeURIComponent(origin);
+               "?autoplay=1&mute=1&loop=1&playlist=" + id +
+               "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
+               "&cc_load_policy=0&cc_lang_pref=none" +
+               "&enablejsapi=1&origin=" + encodeURIComponent(origin);
 
     var iframe = document.createElement("iframe");
     iframe.className = "hero-video-frame";
