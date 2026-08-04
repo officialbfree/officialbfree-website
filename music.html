@@ -1,124 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Page title shown in the browser tab. Safe to edit. -->
-  <title>Music — B Free</title>
-  <meta name="description" content="Listen to B Free. Latest single, music video, and streaming links.">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Page title shown in the browser tab. Safe to edit. -->
+<title>Music — B Free</title>
+<meta name="description" content="Listen to B Free. Latest single, music video, and streaming links.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-page="music">
 
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Nav is built automatically from SITE_CONTENT.nav in script.js -->
-  <header class="site-header" id="site-header"></header>
+<!-- Nav is built automatically from SITE_CONTENT.nav in script.js -->
+<header class="site-header" id="site-header"></header>
 
-  <main id="main" class="page">
+<main id="main" class="page">
 
-    <header class="page-head reveal">
-      <p class="eyebrow">Listen</p>
-      <h1 class="display page-title">Music</h1>
-    </header>
+<header class="page-head reveal">
+<p class="eyebrow">Listen</p>
+<h1 class="display page-title">Music</h1>
+</header>
 
-    <!-- ================================================================
-         CURRENT SINGLE
-         Title and blurb come from SITE_CONTENT.music in script.js.
-         ================================================================ -->
-    <section class="single">
+<!-- ================================================================
+CURRENT SINGLE
+Title and blurb come from SITE_CONTENT.music in script.js.
+================================================================ -->
+<section class="single">
 
-      <div class="reveal">
-        <!-- ============================================================
-             MUSIC VIDEO
-             Drop your video into the /assets folder and name it exactly:
+<div class="reveal">
+<!-- ============================================================
+MUSIC VIDEO
+This is a real YouTube embed, not an uploaded file — nothing to
+drop into /assets. script.js fills this box with the video set
+in content.json under music.musicVideoYoutubeId. To swap in a
+new video later, just update that one ID.
+============================================================ -->
+<div class="video-frame" id="video-frame"></div>
+</div>
 
-                 comfy-cozy-video.mp4
+<div class="reveal">
+<!-- ============================================================
+COVER ART
+Comes from SITE_CONTENT.music.coverImage in content.json.
+Currently pointed at the official artwork straight from
+your Apple Music release — update that field whenever you
+have a new single.
+============================================================ -->
+<img class="single-cover" id="single-cover" alt="" hidden>
+<p class="eyebrow">Latest release</p>
+<h2 class="display single-title" id="single-title"></h2>
+<p class="single-blurb" id="single-blurb"></p>
 
-             (Or change the filename on the source tag below to match
-             whatever your file is called.)
+<!-- Streaming buttons are built from SITE_CONTENT.music.streamingLinks.
+Filled links show as live buttons; unfilled ones stay dimmed
+until you add them in script.js. -->
+<ul class="stream-list" id="streaming-links"></ul>
+</div>
+</section>
 
-             The poster attribute is the still image shown before play.
-             Replace assets/video-poster.jpg with a frame from the video
-             using that same filename.
-             ============================================================ -->
-        <video class="video-frame" controls playsinline preload="metadata" poster="assets/video-poster.jpg">
-          <source src="assets/comfy-cozy-video.mp4" type="video/mp4">
-        </video>
-      </div>
+<!-- ================================================================
+DISCOGRAPHY
+Everything except the current single, newest first, built from
+SITE_CONTENT.music.previousReleases in content.json. When you
+put out something new: move the old "latest release" into an
+object at the top of that array (title, year, type, image, url)
+and update currentSingle/coverImage with the new one.
+================================================================ -->
+<section class="discography reveal">
+<p class="eyebrow">Discography</p>
+<h2 class="display discography-title">More releases</h2>
+<div class="discography-grid" id="discography-grid"></div>
+</section>
 
-      <div class="reveal">
-        <!-- ============================================================
-             COVER ART
-             Comes from SITE_CONTENT.music.coverImage in content.json.
-             Currently pointed at the official artwork straight from
-             your Apple Music release — update that field whenever you
-             have a new single.
-             ============================================================ -->
-        <img class="single-cover" id="single-cover" alt="" hidden>
-        <p class="eyebrow">Latest release</p>
-        <h2 class="display single-title" id="single-title"></h2>
-        <p class="single-blurb" id="single-blurb"></p>
+<!-- ================================================================
+STREAMING PLAYER
+Real Spotify embed for the current single ("Comfy, Cozy"). To
+swap this for a new single later: open the new track on
+open.spotify.com, click the three dots, then Share, then
+"Embed track", and copy the src URL from the iframe it gives you
+in place of the one below.
+================================================================ -->
+<section class="embed-section reveal">
+<p class="eyebrow">Player</p>
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/295Lg1dLCwLri40VtwqyWt?utm_source=generator"
+width="100%" height="352" frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+loading="lazy"></iframe>
+</section>
 
-        <!-- Streaming buttons are built from SITE_CONTENT.music.streamingLinks.
-             Filled links show as live buttons; unfilled ones stay dimmed
-             until you add them in script.js. -->
-        <ul class="stream-list" id="streaming-links"></ul>
-      </div>
-    </section>
+</main>
 
-    <!-- ================================================================
-         DISCOGRAPHY
-         Everything except the current single, newest first, built from
-         SITE_CONTENT.music.previousReleases in content.json. When you
-         put out something new: move the old "latest release" into an
-         object at the top of that array (title, year, type, image, url)
-         and update currentSingle/coverImage with the new one.
-         ================================================================ -->
-    <section class="discography reveal">
-      <p class="eyebrow">Discography</p>
-      <h2 class="display discography-title">More releases</h2>
-      <div class="discography-grid" id="discography-grid"></div>
-    </section>
+<!-- Footer is built automatically from SITE_CONTENT.footer in script.js -->
+<footer class="site-footer" id="site-footer"></footer>
 
-    <!-- ================================================================
-         STREAMING PLAYER EMBED
-         To put a real Spotify player here:
-           1. Open your track or album on open.spotify.com
-           2. Click the three dots, then Share, then "Embed track"
-           3. Copy the <iframe ...></iframe> code it gives you
-           4. Delete the <div class="embed-placeholder"> block below and
-              paste the iframe in its place
-         Apple Music and YouTube have the same Share > Embed option and
-         work the same way.
-
-         Example of what the pasted code looks like (this one is inert
-         because it is inside a comment):
-
-         <iframe style="border-radius:12px"
-           src="https://open.spotify.com/embed/track/YOUR_TRACK_ID"
-           width="100%" height="352" frameborder="0"
-           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-           loading="lazy"></iframe>
-         ================================================================ -->
-    <section class="embed-section reveal">
-      <p class="eyebrow">Player</p>
-      <div class="embed-placeholder">
-        <p><strong>Streaming player goes here.</strong></p>
-        <p>Paste your Spotify, Apple Music, or YouTube embed code in place of this box.<br>
-        Open music.html and look for the comment marked STREAMING PLAYER EMBED for the steps.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer is built automatically from SITE_CONTENT.footer in script.js -->
-  <footer class="site-footer" id="site-footer"></footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
