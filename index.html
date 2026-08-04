@@ -24,38 +24,32 @@
     <!-- ================================================================
          HERO
          One-pager layout: background video, your name, and the "out
-         now" strip below it. The old subhead line and the two buttons
-         (Listen now / Shop) have been removed on purpose, along with
-         the Music/Store/About link panels that used to sit under the
-         strip — per your call, the homepage is just video + name +
-         strip now. All those pages are still reachable from the top
-         nav, so nothing is actually lost, just off this page.
+         now" strip below it. The video is a YouTube embed — set the
+         video ID in content.json under home.heroYoutubeId and
+         script.js builds the muted, looping background automatically.
+         The round button in the corner lets a visitor turn the sound
+         on with one click.
          ================================================================ -->
     <section class="hero">
 
-      <!-- ============================================================
-           HERO BACKGROUND VIDEO
-           Drop your video into the /assets folder and name it exactly:
-
-               hero-video.mp4
-
-           That's it. This tag will pick it up automatically.
-           Keep it short (10-30 seconds), no sound needed (it plays
-           muted), and export around 1080p to keep the page fast.
-
-           The poster attribute below is the still image shown while
-           the video loads. Replace assets/hero-poster.jpg with a
-           photo of your own using that same filename.
-           ============================================================ -->
-      <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
-        <source src="assets/hero-video.mp4" type="video/mp4">
-      </video>
+      <!-- script.js fills this with a YouTube video once the page loads.
+           The image underneath stays visible as a fallback if no video
+           ID is set, or for a moment while it loads. Replace
+           assets/hero-poster.jpg with a photo of your own using that
+           same filename if you want a different fallback image. -->
+      <div class="hero-video" id="hero-video">
+        <img class="hero-video-poster" src="assets/hero-poster.jpg" alt="">
+      </div>
 
       <div class="hero-overlay" aria-hidden="true"></div>
 
       <div class="hero-content">
         <h1 class="display hero-title" id="hero-headline"></h1>
       </div>
+
+      <button type="button" id="hero-sound-toggle" class="hero-sound-toggle" aria-pressed="false" aria-label="Unmute background video">
+        <span class="hero-sound-icon" id="hero-sound-icon">&#128263;</span>
+      </button>
     </section>
 
     <!-- Scrolling "out now" strip — this is the carousel. Text comes
