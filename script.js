@@ -248,9 +248,30 @@ var SITE_CONTENT = null;
     }
   }
 
+  /* Builds a normal (controls on, not muted, not looping) YouTube embed
+     for the current single's music video, using the video ID set in
+     content.json (music.musicVideoYoutubeId). If that field is blank,
+     the space just stays empty. */
+  function renderMusicVideo() {
+    var wrap = byId("video-frame");
+    if (!wrap) return;
+    var id = SITE_CONTENT.music.musicVideoYoutubeId;
+    if (!filled(id)) return;
+
+    var iframe = document.createElement("iframe");
+    iframe.className = "video-frame-embed";
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1";
+    iframe.title = (filled(SITE_CONTENT.music.currentSingle) ? SITE_CONTENT.music.currentSingle : "Music video") + " — official music video";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+    iframe.setAttribute("allowfullscreen", "");
+    wrap.appendChild(iframe);
+  }
+
   function renderStore() {
     var grid = byId("product-grid");
     if (!grid) return;
+
     var products = SITE_CONTENT.store.products;
     var cards = "";
     for (var i = 0; i < products.length; i++) {
@@ -398,7 +419,7 @@ var SITE_CONTENT = null;
 
     var page = document.body.getAttribute("data-page");
     if (page === "home")  renderHome();
-    if (page === "music") renderMusic();
+    if (page === "music") { renderMusic(); renderMusicVideo(); }
     if (page === "store") renderStore();
     if (page === "about") renderAbout();
 
