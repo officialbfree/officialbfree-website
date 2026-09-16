@@ -38,15 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Locks the whole page from scrolling. Only ever applied on the home
-   page (script.js adds this class to <html> there) so the one-pager
-   hero + carousel fits the screen exactly with nothing to scroll. */
-html.no-scroll,
-html.no-scroll body {
-  height: 100%;
-  overflow: hidden;
-}
-
 img, video { display: block; max-width: 100%; }
 
 img { background: var(--bg-elev); }
@@ -287,32 +278,6 @@ a.is-todo, span.is-todo { pointer-events: none; }
   overflow: hidden;
 }
 
-/* One-pager lock: on the home page the hero shares the screen with the
-   carousel strip below it instead of taking the full viewport height,
-   and the footer is hidden entirely so there's nothing to scroll to. */
-body[data-page="home"] {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  height: 100svh;
-}
-body[data-page="home"] #main {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-body[data-page="home"] .hero {
-  flex: 1;
-  min-height: 0;
-}
-body[data-page="home"] .marquee {
-  flex-shrink: 0;
-}
-body[data-page="home"] .site-footer {
-  display: none;
-}
-
 .hero-video {
   position: absolute;
   inset: 0;
@@ -354,22 +319,6 @@ body[data-page="home"] .site-footer {
     linear-gradient(180deg, rgba(18, 16, 13, 0.55) 0%, rgba(18, 16, 13, 0.18) 42%, rgba(18, 16, 13, 0.94) 100%);
 }
 
-/* Solid strip along the very bottom of the hero video. This video has
-   no toggleable YouTube caption track — any on-screen text is burned
-   into the video file itself, so the only reliable way to hide it is
-   to cover that strip. Sits below the headline (which is anchored
-   higher up via align-items: flex-end + its own bottom padding). */
-.hero-caption-mask {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: clamp(90px, 16vh, 190px);
-  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 55%, rgba(18, 16, 13, 0) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .hero-content {
   position: relative;
   width: var(--container);
@@ -403,9 +352,9 @@ body[data-page="home"] .site-footer {
   transform: translateY(26px);
   animation: rise 0.9s var(--ease) forwards;
 }
-.hero-title { animation-delay: 0.12s; }
+.hero-title   { animation-delay: 0.12s; }
 .hero-subhead { animation-delay: 0.26s; }
-.hero-ctas { animation-delay: 0.4s; }
+.hero-ctas    { animation-delay: 0.4s; }
 
 @keyframes rise {
   to { opacity: 1; transform: none; }
@@ -559,15 +508,6 @@ body[data-page="home"] .site-footer {
   border: 1px solid var(--line);
 }
 
-/* The music video is a real YouTube embed dropped into #video-frame by
-   script.js — this makes the iframe fill that same box. */
-.video-frame-embed {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 .single-cover {
   width: 100%;
   max-width: 220px;
@@ -640,7 +580,6 @@ a.stream-link:hover {
 .discography-art {
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border: 1px solid var(--line);
   background: var(--bg-elev);
 }
 .discography-art img {
@@ -683,14 +622,56 @@ a.stream-link:hover {
 }
 .embed-placeholder strong { color: var(--text); }
 
-/* ---------- store page ---------- */
+/* ---------- catalog layout (shared by Store + Music discography) ----------
+   A slim text filter column on the left, product/release grid on the
+   right — filters are built automatically in script.js from each item's
+   category (store) or type (discography). Flush, borderless imagery,
+   straight to the point. */
 
-.store-grid {
+.catalog {
   width: var(--container);
   margin-inline: auto;
   padding-block: var(--section);
+}
+
+.catalog-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: 160px 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+.catalog-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  position: sticky;
+  top: 6.5rem;
+}
+.catalog-filters:empty { display: none; }
+
+.catalog-filter {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0.15rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.catalog-filter:hover { color: var(--text); }
+.catalog-filter.active { color: var(--accent); font-weight: 800; }
+
+/* ---------- store page ---------- */
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 3rem 1.6rem;
 }
 
@@ -698,7 +679,7 @@ a.stream-link:hover {
   display: block;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border: 1px solid var(--line);
+  background: var(--bg-elev);
 }
 .product-media img {
   width: 100%;
@@ -970,6 +951,13 @@ a.footer-email:hover { color: var(--accent); border-color: var(--accent); }
   .press-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
   .contact-row { grid-template-columns: 1fr; }
+  .catalog-layout { grid-template-columns: 1fr; }
+  .catalog-filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    position: static;
+  }
 }
 
 @media (max-width: 760px) {

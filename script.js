@@ -136,8 +136,53 @@ var SITE_CONTENT = null;
 
     footer.innerHTML =
       '<div class="footer-inner">' +
+        '<p class="footer-ghost" aria-hidden="true">' + SITE_CONTENT.artistName + "</p>" +
         '<p class="footer-copy">' + f.copyright + "</p>" +
       "</div>";
+  }
+
+  /* Shared filter column for the Store and Music-discography catalog
+     grids. Reads a data-filter attribute already baked onto each card
+     (set in renderMusic/renderStore below), builds an "All" + one
+     button per distinct value found, and toggles card visibility on
+     click. If there's only one value (or none), the filter column
+     hides itself — no point showing a single "All" button. */
+  function initCatalogFilter(filtersId, gridId, itemSelector) {
+    var filtersEl = byId(filtersId);
+    var gridEl = byId(gridId);
+    if (!filtersEl || !gridEl) return;
+
+    var items = gridEl.querySelectorAll(itemSelector);
+    var values = [];
+    for (var i = 0; i < items.length; i++) {
+      var v = items[i].getAttribute("data-filter");
+      if (v && values.indexOf(v) === -1) values.push(v);
+    }
+    if (values.length < 2) {
+      filtersEl.innerHTML = "";
+      return;
+    }
+
+    var html = '<button type="button" class="catalog-filter active" data-value="all">All</button>';
+    for (var j = 0; j < values.length; j++) {
+      html += '<button type="button" class="catalog-filter" data-value="' + values[j] + '">' + values[j] + "</button>";
+    }
+    filtersEl.innerHTML = html;
+
+    filtersEl.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest(".catalog-filter") : null;
+      if (!btn) return;
+      var value = btn.getAttribute("data-value");
+
+      var buttons = filtersEl.querySelectorAll(".catalog-filter");
+      for (var k = 0; k < buttons.length; k++) {
+        buttons[k].classList.toggle("active", buttons[k] === btn);
+      }
+      for (var m = 0; m < items.length; m++) {
+        var show = value === "all" || items[m].getAttribute("data-filter") === value;
+        items[m].style.display = show ? "" : "none";
+      }
+    });
   }
 
   function styledHeadline(text) {
@@ -237,35 +282,16 @@ var SITE_CONTENT = null;
       var cards = "";
       for (var i = 0; i < releases.length; i++) {
         var r = releases[i];
-        cards += '<a class="discography-item reveal" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
-                 '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
-                 ' cover art" loading="lazy"></div>' +
-                 '<p class="discography-name">' + r.title + "</p>" +
-                 '<p class="discography-meta">' + r.type + " &bull; " + r.year + "</p>" +
-                 "</a>";
+        cards += '<a class="discography-item reveal" data-filter="' + r.type + '" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
+          '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
+          ' cover art" loading="lazy"></div>' +
+          '<p class="discography-name">' + r.title + "</p>" +
+          '<p class="discography-meta">' + r.type + " &bull; " + r.year + "</p>" +
+        "</a>";
       }
       discoGrid.innerHTML = cards;
+      initCatalogFilter("discography-filters", "discography-grid", ".discography-item");
     }
-  }
-
-  /* Builds a normal (controls on, not muted, not looping) YouTube embed
-     for the current single's music video, using the video ID set in
-     content.json (music.musicVideoYoutubeId). If that field is blank,
-     the space just stays empty. */
-  function renderMusicVideo() {
-    var wrap = byId("video-frame");
-    if (!wrap) return;
-    var id = SITE_CONTENT.music.musicVideoYoutubeId;
-    if (!filled(id)) return;
-
-    var iframe = document.createElement("iframe");
-    iframe.className = "video-frame-embed";
-    iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1";
-    iframe.title = (filled(SITE_CONTENT.music.currentSingle) ? SITE_CONTENT.music.currentSingle : "Music video") + " — official music video";
-    iframe.setAttribute("frameborder", "0");
-    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-    iframe.setAttribute("allowfullscreen", "");
-    wrap.appendChild(iframe);
   }
 
   function renderStore() {
@@ -282,7 +308,7 @@ var SITE_CONTENT = null;
                   '" loading="lazy">';
 
       cards +=
-        '<article class="product reveal">' +
+        '<article class="product reveal" data-filter="' + (filled(p.category) ? p.category : "") + '">' +
           (live
             ? '<a class="product-media" href="' + p.buyLink + '"' + linkAttrs(p.buyLink) + ">" + media + "</a>"
             : '<div class="product-media">' + media + "</div>") +
@@ -296,6 +322,7 @@ var SITE_CONTENT = null;
         "</article>";
     }
     grid.innerHTML = cards;
+    initCatalogFilter("store-filters", "product-grid", ".product");
   }
 
   function renderAbout() {
@@ -377,10 +404,9 @@ var SITE_CONTENT = null;
 
     var origin = window.location.origin;
     var src = "https://www.youtube-nocookie.com/embed/" + id +
-               "?autoplay=1&mute=1&loop=1&playlist=" + id +
-               "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
-               "&cc_load_policy=0&cc_lang_pref=none" +
-               "&enablejsapi=1&origin=" + encodeURIComponent(origin);
+      "?autoplay=1&mute=1&loop=1&playlist=" + id +
+      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
+      "&enablejsapi=1&origin=" + encodeURIComponent(origin);
 
     var iframe = document.createElement("iframe");
     iframe.className = "hero-video-frame";
@@ -419,16 +445,9 @@ var SITE_CONTENT = null;
 
     var page = document.body.getAttribute("data-page");
     if (page === "home")  renderHome();
-    if (page === "music") { renderMusic(); renderMusicVideo(); }
+    if (page === "music") renderMusic();
     if (page === "store") renderStore();
     if (page === "about") renderAbout();
-
-    /* Locks the home page to a single, non-scrolling screen: video +
-       name + carousel, nothing to scroll to. See the matching CSS
-       rule for html.no-scroll in style.css. */
-    if (page === "home") {
-      document.documentElement.classList.add("no-scroll");
-    }
 
     setupReveals();
     renderHeroVideo();

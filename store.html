@@ -28,13 +28,21 @@
     </header>
 
     <!-- ================================================================
-         PRODUCT GRID
-         Every card below is built from SITE_CONTENT.store.products in
-         script.js. To add, remove, or edit products, edit that list.
-         Product photos live in /assets (product-1.jpg, product-2.jpg...).
-         Buy buttons stay dimmed until a checkout link is pasted in.
+         PRODUCT CATALOG
+         Left column is a category filter built automatically from the
+         "category" field on each product in SITE_CONTENT.store.products.
+         Right side is the product grid. Every card is built from that
+         same list in script.js — to add, remove, or edit products (or
+         their category), edit content.json. Product photos live in
+         /assets (product-1.jpg, product-2.jpg...). Buy buttons/links
+         stay dimmed until a checkout link is pasted in.
          ================================================================ -->
-    <section class="store-grid" id="product-grid"></section>
+    <section class="catalog reveal">
+      <div class="catalog-layout">
+        <aside class="catalog-filters" id="store-filters" aria-label="Filter products"></aside>
+        <div class="catalog-grid store-grid" id="product-grid"></div>
+      </div>
+    </section>
 
   </main>
 
