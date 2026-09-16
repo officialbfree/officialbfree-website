@@ -901,6 +901,11 @@ a.product-buy:hover { color: var(--accent); border-color: var(--accent); }
   user-select: none;
 }
 
+/* Home page footer stays clean/minimal — no giant watermark name. */
+body[data-page="home"] .footer-ghost {
+  display: none;
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
