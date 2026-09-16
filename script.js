@@ -278,11 +278,29 @@ var SITE_CONTENT = null;
 
     var discoGrid = byId("discography-grid");
     if (discoGrid) {
-      var releases = m.previousReleases || [];
+      var releases = (m.previousReleases || []).slice();
+
+      /* The current single always leads the grid, no matter what's in
+         previousReleases — it's built straight from currentSingle /
+         coverImage so it can never go missing or fall out of place. */
+      if (filled(m.currentSingle) && filled(m.coverImage)) {
+        var currentUrl = m.streamingLinks.spotify || m.streamingLinks.appleMusic ||
+          m.streamingLinks.soundcloud || m.streamingLinks.youtube || "";
+        releases.unshift({
+          title: m.currentSingle,
+          type: "Single",
+          year: "Out now",
+          image: m.coverImage,
+          url: currentUrl,
+          current: true
+        });
+      }
+
       var cards = "";
       for (var i = 0; i < releases.length; i++) {
         var r = releases[i];
-        cards += '<a class="discography-item reveal" data-filter="' + r.type + '" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
+        cards += '<a class="discography-item reveal' + (r.current ? " discography-current" : "") +
+          '" data-filter="' + r.type + '" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
           '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
           ' cover art" loading="lazy"></div>' +
           '<p class="discography-name">' + r.title + "</p>" +

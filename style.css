@@ -606,6 +606,15 @@ a.stream-link:hover {
   color: var(--dim);
 }
 
+/* The current single always leads the discography grid — a thin accent
+   outline around its art and an accent-colored "Out now" meta line mark
+   it as the priority pick without needing a separate spotlight section. */
+.discography-current .discography-art {
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
+}
+.discography-current .discography-meta { color: var(--accent); }
+
 .embed-section {
   width: var(--container);
   margin-inline: auto;
