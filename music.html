@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Page title shown in the browser tab. Safe to edit. -->
   <title>Music — B Free</title>
-  <meta name="description" content="Listen to B Free. Latest single, music video, and streaming links.">
+  <meta name="description" content="B Free's discography — every release, streamable everywhere.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,51 +27,6 @@
     </header>
 
     <!-- ================================================================
-         CURRENT SINGLE
-         Title and blurb come from SITE_CONTENT.music in script.js.
-         ================================================================ -->
-    <section class="single">
-
-      <div class="reveal">
-        <!-- ============================================================
-             MUSIC VIDEO
-             Drop your video into the /assets folder and name it exactly:
-
-                 comfy-cozy-video.mp4
-
-             (Or change the filename on the source tag below to match
-             whatever your file is called.)
-
-             The poster attribute is the still image shown before play.
-             Replace assets/video-poster.jpg with a frame from the video
-             using that same filename.
-             ============================================================ -->
-        <video class="video-frame" controls playsinline preload="metadata" poster="assets/video-poster.jpg">
-          <source src="assets/comfy-cozy-video.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="reveal">
-        <!-- ============================================================
-             COVER ART
-             Comes from SITE_CONTENT.music.coverImage in content.json.
-             Currently pointed at the official artwork straight from
-             your Apple Music release — update that field whenever you
-             have a new single.
-             ============================================================ -->
-        <img class="single-cover" id="single-cover" alt="" hidden>
-        <p class="eyebrow">Latest release</p>
-        <h2 class="display single-title" id="single-title"></h2>
-        <p class="single-blurb" id="single-blurb"></p>
-
-        <!-- Streaming buttons are built from SITE_CONTENT.music.streamingLinks.
-             Filled links show as live buttons; unfilled ones stay dimmed
-             until you add them in script.js. -->
-        <ul class="stream-list" id="streaming-links"></ul>
-      </div>
-    </section>
-
-    <!-- ================================================================
          DISCOGRAPHY
          Everything except the current single, newest first, built from
          SITE_CONTENT.music.previousReleases in content.json. When you
@@ -85,7 +40,7 @@
          ================================================================ -->
     <section class="discography reveal">
       <p class="eyebrow">Discography</p>
-      <h2 class="display discography-title">More releases</h2>
+      <h2 class="display discography-title">Recent Releases</h2>
       <div class="catalog-layout">
         <aside class="catalog-filters" id="discography-filters" aria-label="Filter releases"></aside>
         <div class="catalog-grid discography-grid" id="discography-grid"></div>
