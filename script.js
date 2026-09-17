@@ -505,6 +505,50 @@ var SITE_CONTENT = null;
     });
   }
 
+  /* Same idea again, for the Store page background video
+     (store.heroYoutubeId in content.json). */
+  function renderStoreHeroVideo() {
+    var wrap = byId("hero-video-store");
+    if (!wrap) return;
+    var id = SITE_CONTENT.store.heroYoutubeId;
+    if (!filled(id)) return;
+
+    var origin = window.location.origin;
+    var src = "https://www.youtube.com/embed/" + id +
+      "?autoplay=1&mute=1&loop=1&playlist=" + id +
+      "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3" +
+      "&enablejsapi=1&origin=" + encodeURIComponent(origin);
+
+    var iframe = document.createElement("iframe");
+    iframe.className = "hero-video-frame";
+    iframe.src = src;
+    iframe.title = "Background video";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+    iframe.setAttribute("aria-hidden", "true");
+    iframe.setAttribute("tabindex", "-1");
+    wrap.appendChild(iframe);
+
+    var toggle = byId("hero-sound-toggle-store");
+    if (!toggle) return;
+    var icon = toggle.querySelector(".hero-sound-icon");
+
+    var muted = true;
+    var sendCommand = function (func) {
+      if (!iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: [] }), "*");
+    };
+
+    toggle.addEventListener("click", function () {
+      muted = !muted;
+      sendCommand(muted ? "mute" : "unMute");
+      toggle.classList.toggle("is-unmuted", !muted);
+      toggle.setAttribute("aria-pressed", String(!muted));
+      toggle.setAttribute("aria-label", muted ? "Unmute background video" : "Mute background video");
+      if (icon) icon.innerHTML = muted ? "&#128263;" : "&#128266;";
+    });
+  }
+
   function init() {
     renderNav();
     renderFooter();
@@ -518,6 +562,7 @@ var SITE_CONTENT = null;
     setupReveals();
     renderHeroVideo();
     renderMusicHeroVideo();
+    renderStoreHeroVideo();
   }
 
   function boot() {

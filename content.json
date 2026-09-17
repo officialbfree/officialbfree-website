@@ -70,6 +70,7 @@
     ]
   },
   "store": {
+    "heroYoutubeId": "lWAsoFatIo0",
     "products": [
       { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "category": "Apparel", "image": "assets/product-1.jpg", "buyLink": "[FILL IN: checkout link]" },
       { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "category": "Apparel", "image": "assets/product-2.jpg", "buyLink": "[FILL IN: checkout link]" },
