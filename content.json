@@ -73,7 +73,7 @@
   "store": {
     "heroYoutubeId": "lWAsoFatIo0",
     "products": [
-      { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "category": "Apparel", "image": "assets/product-1.jpg", "buyLink": "[FILL IN: checkout link]" },
+      { "name": "Play 4 Keeps Tee", "price": "$30", "category": "Apparel", "material": "100% Cotton", "image": "assets/play-4-keeps-tee.png", "buyLink": "[FILL IN: checkout link]" },
       { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "category": "Apparel", "image": "assets/product-2.jpg", "buyLink": "[FILL IN: checkout link]" },
       { "name": "[FILL IN: Product name]", "price": "[FILL IN: $0]", "category": "Headwear", "image": "assets/product-3.jpg", "buyLink": "[FILL IN: checkout link]" }
     ]
