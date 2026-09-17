@@ -299,7 +299,7 @@ var SITE_CONTENT = null;
       var cards = "";
       for (var i = 0; i < releases.length; i++) {
         var r = releases[i];
-        cards += '<a class="discography-item reveal' + (r.current ? " discography-current" : "") +
+        cards += '<a class="discography-item' + (r.current ? " discography-current" : "") +
           '" data-filter="' + r.type + '" href="' + r.url + '"' + linkAttrs(r.url) + ">" +
           '<div class="discography-art"><img src="' + r.image + '" alt="' + r.title +
           ' cover art" loading="lazy"></div>' +
