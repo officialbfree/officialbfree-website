@@ -386,6 +386,19 @@ a.is-todo, span.is-todo { pointer-events: none; }
 .hero-sound-toggle:hover { border-color: var(--accent); transform: scale(1.05); }
 .hero-sound-toggle.is-unmuted { border-color: var(--accent); }
 
+/* Shorter background-video hero used on the Music page — same video
+   mechanism as the home page, just not a full-viewport takeover. */
+.hero-music {
+  min-height: 46svh;
+}
+.hero-music .page-head {
+  position: relative;
+  z-index: 2;
+  width: var(--container);
+  margin-inline: auto;
+  border-bottom: none;
+}
+
 /* ---------- marquee strip (home) ---------- */
 
 .marquee {

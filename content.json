@@ -18,6 +18,7 @@
     "ctaSecondary": { "label": "Shop", "href": "store.html" }
   },
   "music": {
+    "heroYoutubeId": "Uj-Zg09h8fU",
     "currentSingle": "Comfy Cozy",
     "singleBlurb": "[FILL IN: 1-2 sentences about the single/EP]",
     "musicVideo": "assets/comfy-cozy-video.mp4",

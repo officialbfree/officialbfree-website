@@ -21,9 +21,28 @@
 
   <main id="main" class="page">
 
-    <header class="page-head reveal">
-      <h1 class="display page-title">Music</h1>
-    </header>
+    <!-- ================================================================
+         MUSIC PAGE BACKGROUND VIDEO
+         Same pattern as the home page hero: plays a YouTube video on
+         loop, muted, behind the page title. Video ID lives in
+         content.json under music.heroYoutubeId — swap it any time,
+         no code edits needed.
+         ================================================================ -->
+    <section class="hero hero-music">
+      <div class="hero-video" id="hero-video-music">
+        <img class="hero-video-poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true">
+      </div>
+
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <button type="button" class="hero-sound-toggle" id="hero-sound-toggle-music" aria-pressed="false" aria-label="Unmute background video">
+        <span class="hero-sound-icon" aria-hidden="true">&#128263;</span>
+      </button>
+
+      <header class="page-head reveal">
+        <h1 class="display page-title">Music</h1>
+      </header>
+    </section>
 
     <!-- ================================================================
          DISCOGRAPHY
