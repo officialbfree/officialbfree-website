@@ -706,7 +706,7 @@ a.stream-link:hover {
 .product-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.6s var(--ease);
 }
 a.product-media:hover img { transform: scale(1.04); }
